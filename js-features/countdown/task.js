@@ -1,6 +1,6 @@
 'use strict'
 let time;
-let backTime = 10;
+let backTime = 59
 
 function countdown() {
     document.getElementById('timer').innerHTML = backTime;
