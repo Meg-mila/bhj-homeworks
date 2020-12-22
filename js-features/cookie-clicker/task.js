@@ -1,15 +1,14 @@
 'use strict'
-let timer;
-let backTime = 10;
+const counter = document.getElementById('clicker__counter');
+const cookie = document.getElementById('cookie');
+let sumClick = 0;
 
-function countdown() {
-    document.getElementById('clicker__counter').innerHTML = backTime;
-
-    if (backTime < 0) {
-        clearInterval(timer);
-        alert('Вы победили в конкурсе');
+cookie.onclick = function() {
+    sumClick++;
+    counter.textContent++;
+    if (sumClick % 2 === 0) {
+        cookie.width = 200;
+    } else {
+        cookie.width = 220;
     }
-
-    backTime--;
 }
-timer = setInterval(countdown, 1000);
