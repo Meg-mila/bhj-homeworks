@@ -3,7 +3,7 @@
 const tooltips = document.querySelectorAll('.has-tooltip');
 
 tooltips.forEach((item) => {
-    item.insertAdjacentHTML("beforeEnd", `<div class="tooltip">${item.title}</div>`);
+    item.insertAdjacentHTML("beforeEnd", `<div class="tooltip" style="left: ${item.getBoundingClientRect().left}px; top: ${item.getBoundingClientRect().bottom}px">${item.title}</div>`);
     item.addEventListener('click', (event) => {
         event.preventDefault();
         const tooltipItem = item.querySelector('.tooltip');
