@@ -5,7 +5,15 @@ const signinBtn = document.getElementById('signin__btn');
 const welcome = document.getElementById('welcome');
 const userId = document.getElementById('user_id');
 
-signin.classList.add('signin_active');
+window.addEventListener('load', () => {
+    if (localStorage.userId) {
+        welcome.classList.add('welcome_active');
+        userId.innerText = localStorage.userId;
+    } else {
+        signin.classList.add('signin_active');
+    }
+});
+
 signinBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const form = document.getElementById('signin__form');
@@ -16,10 +24,10 @@ signinBtn.addEventListener('click', (e) => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
             if (response.success) {
-                localStorage.userId = response.user_id;
                 signin.classList.remove('signin_active');
                 welcome.classList.add('welcome_active');
-                userId.innerText = localStorage.userId;
+                userId.innerText = response.user_id;
+                localStorage.userId = response.user_id;
             } else {
                 alert('Неверный логин/пароль');
             }
@@ -27,4 +35,3 @@ signinBtn.addEventListener('click', (e) => {
     });
     xhr.send(formData);
 });
-
